@@ -14,22 +14,24 @@ app.get("/api/todos", async (req, res) => {
 app.post("/api/todo/create", async (req, res) => {
   const data = req.body;
   await Todo.add( data );
-  res.send({ msg: "User Added" });
+  res.send({ msg: "Created Todo" });
 });
 
-app.put("/api/todo/update", async (req, res) => {
-  const id = req.body.id;
-  // delete req.body.id;
+app.put("/api/todo/update/:id", async (req, res) => {
+  const id = req.params.id;
+  delete req.body.id;
   const data = req.body;
   console.log('logdata update',data)
   await Todo.doc(id).update(data);
 
-  res.send({ msg: "Updated" });
+  res.send({ msg: "Updated Todo" });
 });
 
-app.delete("/api/todo/delete", async (req, res) => {
-  const id = req.body.id;
+app.delete("/api/todo/delete/:id", async (req, res) => {
+  // need only id to delte todo
+  const id = req.params.id;
+  console.log('Deleted Item id',id)
   await Todo.doc(id).delete();
-  res.send({ msg: "Deleted" });
+  res.send({ msg: "Deleted Todo" });
 });
 app.listen(5001, () => console.log("Up & RUnning 5001"));
