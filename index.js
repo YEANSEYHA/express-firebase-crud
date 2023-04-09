@@ -18,6 +18,21 @@ app.post("/api/todo/create", async (req, res) => {
 });
 
 app.put("/api/todo/update/:id", async (req, res) => {
+   // check loop list here 
+
+  // have the same todo can not update
+
+  // if not allow updated
+
+  // Handle updated the same todo
+  // const snapshot = await Todo.get();
+  // const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  // console.log(list)
+
+ 
+  
+
+
   const id = req.params.id;
   delete req.body.id;
   const data = req.body;
